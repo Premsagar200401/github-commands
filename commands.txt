@@ -1,0 +1,35 @@
+1>  git config --global user.name "GitHub user name"
+--> it is used to configure the git with this particular username.  
+--> once you set the username it's applies for entire system or you projects.
+
+2>  git config --global user.email "GitHub login email id"
+--> it is used to configure the git with this particular email.
+--> once you set the user email it's applies for entire system or you projects.
+
+3>  git config --global user.name
+--> is used to check the configured username.
+
+4>  git config --global user.email
+--> is used to check the configured user email.
+
+5>  git init
+--> is used to initialize git repository in your local system means it will create local repo.
+
+6>  echo "message" >> filename
+--> this command is used to create a file with the particular name and write these message inside that file.
+
+7>  cat filename
+--> is used to read the particular file.
+
+8>  git add . or git add filename 
+--> is used to move all the file or particular file from workspace to staging area.
+
+9>  git status 
+--> is used to check the current status of the file.
+
+10> git reset filename
+--> is used to unstage the particular file without changing the content of the file.
+
+11> git commit -m "message"
+--> used to move the file from staging area to local repo with the commit message.
+--> This command is used to save your changes permanently in Git.
