@@ -33,3 +33,234 @@
 11> git commit -m "message"
 --> used to move the file from staging area to local repo with the commit message.
 --> This command is used to save your changes permanently in Git.
+
+12> git log
+--> This command is used to view the history of commits in your repository.
+
+13> git log -p
+--> Displays code changes.
+
+14> git log --oneline
+--> Shows commit history in short, one-line format
+
+15> git remote -v
+--> It shows the remote repository URLs connected to your local Git project.
+
+16> git remote add origin (GitHub repo url)
+--> This command connects your local Git repository to a remote repository.
+
+17> git push -u origin master 
+--> This command uploads your local commits to the remote repository (GitHub).
+
+18> git branch
+--> used to check branch
+
+19> git branch (branch name)
+--> used to create branch.
+
+20> git switch <branch_name> or git checkout <branch_name>
+--> used to switch to the particular branch.
+
+21> git checkout -b <branch_name> or git switch -c <branch_name>
+--> Create the branch.
+--> Switch to it immediately.
+
+22> git merge
+--> git merge is used to combine changes from one branch into another branch
+--> ex: git merge <branch_name>
+
+
+           work flow of git merge
+         --------------------------
+Before merge:                        
+
+master --------A
+               \
+                B (feature-login)
+
+After merge:                       in master branch
+
+master --------A--------C          git merge feature-login
+               \      /
+                B----
+
+
+    tip:- after merge delete the branch
+
+23> git branch -d feature-login < branch name >
+--> used to delete the branch
+
+  ----------------
+ --> merge conflict
+  ----------------
+--> "To resolve a merge conflict,
+--> we manually edit the conflicting files,
+--> remove conflict markers,
+--> choose the correct code, 
+--> then stage and commit the resolved changes."
+
+24> What is git rebase?
+
+--> git rebase is used to move or reapply your commits on top of another branch
+          “Take my changes and place them on top of latest code”
+
+--> "git rebase is used to integrate changes by reapplying commits on top of another branch, resulting in a cleaner and linear commit history."
+
+*****************************************
+    without rebase only by using merge
+*****************************************
+
+     A---B---C (master)
+         \
+          D---E (feature)
+
+-------------------------------------
+
+     A---B---C------F (merge commit)
+         \        /
+          D------E
+
+*******************************
+    With rebase
+*******************************
+
+--> git checkout feature-login
+--> git rebase master
+
+     A---B---C---D'---E'
+    
+   * Cleaner history
+   * No merge commit
+
+*****************  Merge vs Rebase 🔥 (VERY IMPORTANT)  **********************************
+
+           | Feature | Merge              | Rebase           |
+           | ------- | ------------------ | ---------------- |
+           | History | Complex            | Clean            |
+           | Commit  | Adds merge commit  | No extra commit  |
+           | Safe    | Safer              | Risky if misused |
+           | Usage   | Team collaboration | Local cleanup    |
+*******************************************************************************************
+
+25> git pull origin master
+
+--> git pull is used to get latest changes from the remote repository and update your local branch
+
+         “Download + update my project with latest code”
+
+--> git fetch + git merge
+
+Step 1: git fetch
+
+--> Downloads latest changes from remote
+
+Step 2: git merge
+
+--> Merges those changes into your current branch
+
+26> git reset --soft <commit_id>
+-->
+            What does it do?
+
+--> It moves the HEAD (current branch pointer) to a previous commit
+--> BUT keeps your changes in the staging area
+
+👉 “Undo commit, but keep changes ready to commit again”
+
+  Initial State:-
+      
+      A --- B --- C --- D (HEAD)
+
+  Current branch is pointing to commit D
+
+**** git reset --soft B ****
+
+ after this:- 
+            
+---->  A --- B (HEAD)
+
+------> HEAD moves from D → B
+------> Commits C and D are removed from history
+
+👉 Changes from commits C and D are NOT deleted
+
+✔ They are moved to staging area
+
+27> git reset --hard <commit_id>
+
+--> It moves HEAD to a specific commit AND deletes all changes after that
+
+👉 “Go back to that commit and delete everything after it”
+
+
+Initial state:
+A --- B --- C --- D (HEAD)
+
+git reset --hard B 
+
+after this ---->
+
+A --- B (HEAD)
+
+❌ Commits C and D are completely deleted
+❌ Their changes are also removed
+
+🔹 When do we use it?
+
+👉 Only when:
+
+--> You want to completely discard changes
+
+--> You made a mistake and want to go back
+
+--> Local changes are not needed
+
+instead we use **** git revert <commit_id> ****
+
+
+**************************************************************
+✅ Use git reset
+
+--> Local changes only
+
+--> Not pushed to remote
+
+--> You want to clean history
+
+✅ Use git revert
+
+--> Code already pushed to GitHub
+
+--> Working in a team
+
+--> Want safe undo
+
+**************************************************************
+
+*************************************************************
+main branch
+     ↓
+create feature branch
+     ↓
+do changes + commit
+     ↓
+push to GitHub
+     ↓
+create PR
+     ↓
+review + approve
+     ↓
+merge to main
+
+*************************************************************
+
+-------------> A Pull Request is a process where developers submit their changes for review before merging them into the main branch, ensuring code quality and collaboration."
+
+
+
+
+
+
+
+
+
